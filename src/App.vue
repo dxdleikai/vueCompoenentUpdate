@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h4>APP</h4>
+    <p>app_number = [{{app_number}}] <button @click="appNumberAdd">app_number + 1</button></p>
+    <div class="two">
+      <h4>APP的子组件</h4>
+       <TwoBrother />
+      <Two />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Two from './components/Two.vue'
+import TwoBrother from './components/TwoBrother.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Two,
+    TwoBrother
+  },
+  data() {
+    return {
+      app_number: 1
+    }
+  },
+  methods: {
+    appNumberAdd() {
+      this.app_number += 1;
+    }
+  },
+  updated() {
+    console.log('component app update');
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  border: 4px solid #000;
+  margin: 20px;
+}
+.two {
+  text-align: center;
+  border: 2px solid #666;
+  margin: 20px;
 }
 </style>
