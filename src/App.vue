@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <h4>APP</h4>
-    <p>app_number = [{{app_number}}] <button @click="appNumberAdd">app_number + 1</button></p>
+    <p>
+      app_number = [{{app_number}}] 
+      <button @click="appNumberAdd">app_number + 1</button>
+    <button @click="modifyProps">更改传递给子组件的props</button></p>
     <div class="two">
       <h4>APP的子组件</h4>
-       <TwoBrother />
-      <Two />
+       <TwoBrother  />
+      <Two :user-name="userName" @newName="newName"/>
     </div>
   </div>
 </template>
@@ -22,12 +25,20 @@ export default {
   },
   data() {
     return {
-      app_number: 1
+      app_number: 1,
+      userName: 'leikai'
     }
   },
   methods: {
     appNumberAdd() {
       this.app_number += 1;
+    },
+     modifyProps() {
+      this.userName = 'gao';
+    },
+    newName(e) {
+      console.log(e);
+      
     }
   },
   updated() {
